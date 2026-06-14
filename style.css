@@ -33,7 +33,7 @@
 /* ===== RESET / BASE ===== */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); overflow-x: hidden; width: 100%; }
 
 body {
   margin: 0;
@@ -100,7 +100,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn--dark:hover { box-shadow: var(--shadow-lg); }
 
 /* ===== SHARED SECTION BITS ===== */
-.section { padding: clamp(70px, 10vw, 130px) 0; position: relative; }
+.section { padding: clamp(70px, 10vw, 130px) 0; position: relative; overflow: hidden; }
 
 .section-label {
   font-size: 0.78rem;
