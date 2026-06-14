@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OutScope Designs — Web Design for Local Businesses</title>
+  <meta name="description" content="OutScope Designs builds fast, affordable, beautiful websites for gyms, restaurants, barbershops, coaches, and local shops." />
+
+  <!-- ===== FONTS (CDN) ===== -->
+  <!-- Clash Display / General Sans via Fontshare; Space Grotesk / Plus Jakarta Sans via Google Fonts as fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Mark JS-enabled (lets CSS hide reveal elements before Motion animates them).
+       Safety net: if the Motion module ever fails to load, force everything visible. -->
+  <script>
+    document.documentElement.classList.add("js");
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        if (!document.documentElement.classList.contains("motion-ready")) {
+          document.documentElement.classList.add("force-reveal");
+        }
+      }, 2500);
+    });
+  </script>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#hero" class="brand" aria-label="OutScope Designs home">
+        <span class="brand__mark" aria-hidden="true">
+          <span class="brand__shape brand__shape--circle"></span>
+          <span class="brand__shape brand__shape--square"></span>
+        </span>
+        <span class="brand__text">OutScope&nbsp;Designs</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="btn btn--primary nav__cta">Get a Quote</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU OVERLAY ===== -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu">&times;</button>
+    <nav class="mobile-menu__links" aria-label="Mobile">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn--primary mobile-menu__cta">Get a Quote</a>
+    </nav>
+  </div>
+
+  <main>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="hero">
+      <!-- Animated gradient mesh background -->
+      <div class="gradient-mesh" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+        <span class="blob blob--3"></span>
+      </div>
+
+      <!-- Decorative floating geometric accents -->
+      <div class="floaters" aria-hidden="true">
+        <span class="floater is-ring" style="top:22%; left:9%;"></span>
+        <span class="floater is-square" style="top:64%; left:13%;"></span>
+        <span class="floater is-dot" style="top:30%; right:11%;"></span>
+        <span class="floater is-plus" style="top:70%; right:12%;"></span>
+        <span class="floater is-triangle c-accent" style="top:16%; right:24%;"></span>
+        <span class="floater is-dot c-secondary" style="top:80%; left:42%;"></span>
+      </div>
+
+      <div class="container hero__inner">
+        <p class="eyebrow reveal">WEB DESIGN FOR LOCAL BUSINESSES</p>
+        <h1 class="hero__title reveal" data-delay="1">
+          Websites That Make Local Businesses Look Like <span class="text-gradient">Industry Leaders</span>
+        </h1>
+        <p class="hero__sub reveal" data-delay="2">AGENCYTAGLINE</p>
+
+        <div class="hero__ctas reveal" data-delay="3">
+          <a href="#work" class="btn btn--primary btn--lg">View Our Work</a>
+          <a href="#contact" class="btn btn--outline btn--lg">Get a Free Quote</a>
+        </div>
+
+        <div class="trust-row reveal" data-delay="4">
+          <span class="pill"><span class="pill__dot pill__dot--primary"></span>Built with AI-powered speed</span>
+          <span class="pill"><span class="pill__dot pill__dot--secondary"></span>Local business specialists</span>
+          <span class="pill"><span class="pill__dot pill__dot--accent"></span>Fast turnaround</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PORTFOLIO / OUR WORK (CAROUSEL) ===== -->
+    <section class="section work" id="work">
+      <div class="floaters" aria-hidden="true">
+        <span class="floater is-dot c-primary" style="top:14%; left:6%;"></span>
+        <span class="floater is-plus" style="top:10%; right:8%; color:var(--color-accent);"></span>
+      </div>
+      <div class="container">
+        <p class="section-label reveal">OUR WORK</p>
+        <h2 class="section-title reveal">See What We've Built</h2>
+      </div>
+
+      <!--
+        ADD NEW PROJECTS HERE — push to the projects array in script.js.
+        The carousel cards are generated from that array, so adding a 4th, 5th,
+        6th project is just one more object: { name, category, url }.
+        No HTML/CSS changes required.
+      -->
+      <div class="carousel" id="carousel">
+        <div class="carousel__track" id="carouselTrack">
+          <!-- Cards injected by script.js (duplicated for seamless infinite loop) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section class="section services" id="services">
+      <span class="section-orb" aria-hidden="true"></span>
+      <div class="floaters" aria-hidden="true">
+        <span class="floater is-ring c-accent" style="top:14%; left:5%;"></span>
+        <span class="floater is-plus" style="top:72%; right:7%;"></span>
+        <span class="floater is-dot c-secondary" style="top:24%; right:14%;"></span>
+      </div>
+      <div class="container">
+        <p class="section-label reveal">SERVICES</p>
+        <h2 class="section-title reveal">What We Do</h2>
+
+        <div class="grid services__grid">
+          <article class="card service-card reveal" data-delay="1">
+            <span class="svc-icon svc-icon--primary" aria-hidden="true"></span>
+            <h3>Website Design &amp; Build</h3>
+            <p>Custom, conversion-focused sites designed around your brand and built to make a strong first impression.</p>
+          </article>
+          <article class="card service-card reveal" data-delay="2">
+            <span class="svc-icon svc-icon--secondary" aria-hidden="true"></span>
+            <h3>Mobile-Responsive Development</h3>
+            <p>Every site looks flawless on phones, tablets, and desktops — because most of your customers are on mobile.</p>
+          </article>
+          <article class="card service-card reveal" data-delay="3">
+            <span class="svc-icon svc-icon--accent" aria-hidden="true"></span>
+            <h3>Ongoing Maintenance &amp; Updates</h3>
+            <p>Keep your site fresh, secure, and up to date with hassle-free updates and priority support.</p>
+          </article>
+          <article class="card service-card reveal" data-delay="4">
+            <span class="svc-icon svc-icon--mixed" aria-hidden="true"></span>
+            <h3>Contact Forms &amp; Deployment</h3>
+            <p>A working contact form wired to your inbox, plus fast, reliable deployment to a live URL via Vercel.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROCESS SECTION ===== -->
+    <section class="section process" id="process">
+      <span class="section-orb" aria-hidden="true"></span>
+      <span class="dotted" aria-hidden="true"></span>
+      <div class="floaters" aria-hidden="true">
+        <span class="floater is-square c-primary" style="top:18%; right:6%;"></span>
+        <span class="floater is-triangle c-primary" style="bottom:14%; left:7%;"></span>
+        <span class="floater is-dot" style="top:30%; left:4%;"></span>
+      </div>
+      <div class="container">
+        <p class="section-label reveal">PROCESS</p>
+        <h2 class="section-title reveal">How We Work</h2>
+
+        <div class="timeline" id="timeline">
+          <div class="timeline__line" aria-hidden="true"><span class="timeline__progress" id="timelineProgress"></span></div>
+
+          <div class="step reveal" data-delay="1">
+            <div class="step__num">1</div>
+            <h3 class="step__title">Discovery Call</h3>
+            <p class="step__desc">A quick chat about your business, your goals, and what you want your site to achieve.</p>
+          </div>
+          <div class="step reveal" data-delay="2">
+            <div class="step__num">2</div>
+            <h3 class="step__title">Design &amp; Build</h3>
+            <p class="step__desc">We build your site using AI-powered tools for a fast turnaround — typically 3–5 days.</p>
+          </div>
+          <div class="step reveal" data-delay="3">
+            <div class="step__num">3</div>
+            <h3 class="step__title">Review &amp; Refine</h3>
+            <p class="step__desc">You review the work and we polish every detail based on your feedback.</p>
+          </div>
+          <div class="step reveal" data-delay="4">
+            <div class="step__num">4</div>
+            <h3 class="step__title">Launch &amp; Grow</h3>
+            <p class="step__desc">Your site goes live, with an optional ongoing maintenance plan to keep growing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING SECTION ===== -->
+    <section class="section pricing" id="pricing">
+      <span class="section-orb" aria-hidden="true"></span>
+      <div class="floaters" aria-hidden="true">
+        <span class="floater is-ring" style="top:12%; right:5%;"></span>
+        <span class="floater is-dot c-secondary" style="bottom:18%; left:6%;"></span>
+        <span class="floater is-plus" style="top:60%; right:8%; color:var(--color-secondary);"></span>
+      </div>
+      <div class="container">
+        <p class="section-label reveal">PRICING</p>
+        <h2 class="section-title reveal">Simple, Transparent Pricing</h2>
+
+        <div class="grid pricing__grid">
+          <!-- One-Time Build -->
+          <article class="card price-card reveal" data-delay="1">
+            <h3 class="price-card__name">One-Time Build</h3>
+            <p class="price-card__price">$400<span class="price-card__range">–$800</span></p>
+            <p class="price-card__note">Site build only — no ongoing retainer</p>
+            <ul class="price-card__features">
+              <li>Up to 5–7 custom pages</li>
+              <li>Mobile-responsive across all devices</li>
+              <li>Contact form to your inbox</li>
+              <li>Live deployment via Vercel</li>
+              <li>One round of revisions included</li>
+            </ul>
+            <a href="#contact" class="btn btn--outline price-card__cta">Get Started</a>
+          </article>
+
+          <!-- Build + Standard Retainer (Most Popular) -->
+          <article class="card price-card price-card--featured reveal" data-delay="2">
+            <span class="price-card__badge">Most Popular</span>
+            <h3 class="price-card__name">Build + Standard</h3>
+            <p class="price-card__price">$300<span class="price-card__range">–$600</span></p>
+            <p class="price-card__note">+ $75–$100/mo retainer</p>
+            <ul class="price-card__features">
+              <li>Everything in One-Time Build</li>
+              <li>2–3 update requests per month</li>
+              <li>Text, hours &amp; pricing changes</li>
+              <li>Photo swaps &amp; social updates</li>
+              <li>Minor styling tweaks</li>
+            </ul>
+            <a href="#contact" class="btn btn--primary price-card__cta">Get Started</a>
+          </article>
+
+          <!-- Build + Premium Retainer -->
+          <article class="card price-card reveal" data-delay="3">
+            <h3 class="price-card__name">Build + Premium</h3>
+            <p class="price-card__price">$300<span class="price-card__range">–$600</span></p>
+            <p class="price-card__note">+ $125–$150/mo retainer</p>
+            <ul class="price-card__features">
+              <li>Everything in One-Time Build</li>
+              <li>5–6 update requests per month</li>
+              <li>Faster turnaround on changes</li>
+              <li>Priority support</li>
+              <li>Ongoing site care &amp; tweaks</li>
+            </ul>
+            <a href="#contact" class="btn btn--outline price-card__cta">Get Started</a>
+          </article>
+        </div>
+
+        <div class="retainer-strip reveal">
+          <p><strong>Ongoing Maintenance Retainer</strong> — $75–$150/mo for ongoing updates, photo swaps, and priority changes. The build fee is split 50% upfront, 50% on delivery. Cancel anytime with 30 days' notice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="section about" id="about">
+      <span class="section-orb" aria-hidden="true"></span>
+      <div class="floaters" aria-hidden="true">
+        <span class="floater is-triangle c-accent" style="top:16%; left:5%;"></span>
+        <span class="floater is-square" style="bottom:16%; right:6%;"></span>
+        <span class="floater is-dot c-primary" style="top:26%; right:12%;"></span>
+      </div>
+      <div class="container">
+        <p class="section-label reveal">ABOUT US</p>
+        <h2 class="section-title reveal">Built by Students. Driven by Results.</h2>
+        <p class="about__intro reveal" data-delay="1">
+          We're a young, fast-moving team of AI-powered builders who understand what local businesses actually need:
+          a site that looks professional, loads fast, and brings in customers — without the agency price tag or the months of waiting.
+        </p>
+
+        <div class="grid about__team">
+          <article class="team-card reveal" data-delay="1">
+            <span class="avatar avatar--1" aria-hidden="true">OU</span>
+            <h3 class="team-card__name">Owen Uher</h3>
+            <p class="team-card__role">TEAMMEMBER1ROLE</p>
+            <p class="team-card__bio">TEAMMEMBER1BIO</p>
+          </article>
+          <article class="team-card reveal" data-delay="2">
+            <span class="avatar avatar--2" aria-hidden="true">CG</span>
+            <h3 class="team-card__name">Connor Gillespie</h3>
+            <p class="team-card__role">TEAMMEMBER2ROLE</p>
+            <p class="team-card__bio">TEAMMEMBER2BIO</p>
+          </article>
+          <article class="team-card reveal" data-delay="3">
+            <span class="avatar avatar--3" aria-hidden="true">RV</span>
+            <h3 class="team-card__name">Ryan Vaughn</h3>
+            <p class="team-card__role">TEAMMEMBER3ROLE</p>
+            <p class="team-card__bio">TEAMMEMBER3BIO</p>
+          </article>
+        </div>
+
+        <div class="stats-row reveal">
+          <div class="stat"><span class="stat__num">X</span><span class="stat__label">Sites Built</span></div>
+          <div class="stat"><span class="stat__num">X</span><span class="stat__label">Day Avg Turnaround</span></div>
+          <div class="stat"><span class="stat__num">100%</span><span class="stat__label">Responsive</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT / CTA SECTION ===== -->
+    <section class="section contact" id="contact">
+      <div class="gradient-mesh gradient-mesh--saturated" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+      </div>
+
+      <div class="container contact__inner">
+        <h2 class="contact__title reveal">Ready to Get Your Business Online?</h2>
+        <p class="contact__sub reveal" data-delay="1">Fill out our quick intake form to get started — most builds ship in 3–5 business days.</p>
+
+        <!--
+          CLIENT INTAKE FORM (link-out)
+          ------------------------------------------------------------
+          The intake form is hosted on Notion, which blocks being embedded
+          in an iframe (X-Frame-Options: SAMEORIGIN) even for published
+          notion.site pages, so it opens in a new tab instead. To change
+          the form, update the URL in the href below.
+        -->
+        <div class="intake-cta card reveal" data-delay="2">
+          <div class="intake-cta__icon" aria-hidden="true"></div>
+          <h3 class="intake-cta__title">Start Your Project</h3>
+          <p class="intake-cta__text">Tell us about your business and what you need. It takes about 3 minutes, and we'll follow up within 24 hours.</p>
+          <a href="https://plume-tang-e3d.notion.site/37b751f688fb80619befd6dd5a8aa73a?pvs=105" target="_blank" rel="noopener" class="btn btn--dark btn--lg">Open the Intake Form →</a>
+        </div>
+
+        <!-- ===== PROMINENT "REACH OUT" BAND ===== -->
+        <div class="reachout reveal" data-delay="1">
+          <h3 class="reachout__title">Prefer to talk first?</h3>
+          <p class="reachout__sub">Reach out directly — we're quick to respond.</p>
+          <div class="reachout__grid">
+            <a href="mailto:EMAIL" class="reachout__card">
+              <span class="reachout__icon reachout__icon--email" aria-hidden="true"></span>
+              <span class="reachout__label">Email Us</span>
+              <span class="reachout__value">EMAIL</span>
+            </a>
+            <a href="tel:PHONE" class="reachout__card">
+              <span class="reachout__icon reachout__icon--phone" aria-hidden="true"></span>
+              <span class="reachout__label">Call or Text</span>
+              <span class="reachout__value">PHONE</span>
+            </a>
+            <a href="INSTAGRAM_URL" target="_blank" rel="noopener" class="reachout__card">
+              <span class="reachout__icon reachout__icon--ig" aria-hidden="true"></span>
+              <span class="reachout__label">DM on Instagram</span>
+              <span class="reachout__value">@outscopedesigns</span>
+            </a>
+            <a href="LINKEDIN_URL" target="_blank" rel="noopener" class="reachout__card">
+              <span class="reachout__icon reachout__icon--li" aria-hidden="true">in</span>
+              <span class="reachout__label">Connect</span>
+              <span class="reachout__value">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#hero" class="brand">
+          <span class="brand__mark" aria-hidden="true">
+            <span class="brand__shape brand__shape--circle"></span>
+            <span class="brand__shape brand__shape--square"></span>
+          </span>
+          <span class="brand__text">OutScope&nbsp;Designs</span>
+        </a>
+        <p class="footer__tag">Websites that make local businesses look like industry leaders.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer__socials">
+        <a href="INSTAGRAM_URL" target="_blank" rel="noopener" class="social" aria-label="Instagram">
+          <span class="social__icon social__icon--ig"></span>
+        </a>
+        <a href="LINKEDIN_URL" target="_blank" rel="noopener" class="social" aria-label="LinkedIn">
+          <span class="social__icon social__icon--li">in</span>
+        </a>
+      </div>
+    </div>
+    <p class="footer__copy">© 2025 OutScope Designs. All rights reserved.</p>
+  </footer>
+
+  <!-- Classic script (NOT type=module) so it also runs when the file is opened
+       directly via file://. Motion is still loaded with dynamic import() below. -->
+  <script src="script.js"></script>
+</body>
+</html>
