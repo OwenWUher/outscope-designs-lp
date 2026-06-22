@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="-3 -3 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OutScope Designs">
+  <circle cx="9" cy="9" r="9" fill="#5B6CFF"/>
+  <rect x="10" y="10" width="16" height="16" rx="5" fill="#FF8966"/>
+  <clipPath id="c"><circle cx="9" cy="9" r="9"/></clipPath>
+  <rect x="10" y="10" width="16" height="16" rx="5" fill="#5B3A66" clip-path="url(#c)"/>
+</svg>

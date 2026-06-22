@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OutScope Designs — Logo PNG Exporter</title>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&display=swap" rel="stylesheet" />
+<style>
+  :root { --primary:#5B6CFF; --coral:#FF8966; --ink:#1A1A1A; --bg:#FAFAF7; --border:#ECECE6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Clash Display",system-ui,Arial,sans-serif; background:var(--bg); color:var(--ink); padding:40px 20px; }
+  .wrap { max-width:760px; margin:0 auto; }
+  h1 { font-size:1.6rem; margin:0 0 6px; }
+  p.sub { color:#6B6B68; margin:0 0 28px; font-family:system-ui,Arial,sans-serif; }
+  .card { background:#fff; border:1px solid var(--border); border-radius:18px; padding:26px; margin-bottom:22px; box-shadow:0 8px 24px rgba(0,0,0,.05); }
+  h2 { font-size:1.1rem; margin:0 0 16px; }
+  /* checkerboard so transparency is visible */
+  .preview { background:
+      linear-gradient(45deg,#eee 25%,transparent 25%),
+      linear-gradient(-45deg,#eee 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#eee 75%),
+      linear-gradient(-45deg,transparent 75%,#eee 75%);
+    background-size:18px 18px; background-position:0 0,0 9px,9px -9px,-9px 0;
+    border-radius:12px; padding:18px; display:inline-block; }
+  .btns { margin-top:16px; display:flex; flex-wrap:wrap; gap:10px; }
+  button { font-family:"Clash Display",system-ui,Arial,sans-serif; font-weight:600; font-size:.92rem; cursor:pointer;
+    background:var(--primary); color:#fff; border:none; border-radius:999px; padding:10px 18px; transition:transform .15s, box-shadow .15s; }
+  button:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(91,108,255,.35); }
+  .swatches { display:flex; flex-wrap:wrap; gap:14px; font-family:system-ui,Arial,sans-serif; }
+  .sw { display:flex; align-items:center; gap:10px; font-size:.9rem; }
+  .chip { width:40px; height:40px; border-radius:10px; border:1px solid rgba(0,0,0,.08); }
+  code { background:#f1f1ec; padding:2px 7px; border-radius:6px; font-size:.85rem; }
+  .note { font-family:system-ui,Arial,sans-serif; font-size:.85rem; color:#6B6B68; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>OutScope Designs — Logo Exporter</h1>
+  <p class="sub">Click a size to download a transparent PNG. The wordmark is rendered in the real Clash Display typeface.</p>
+
+  <div class="card">
+    <h2>Logo mark (icon)</h2>
+    <div class="preview"><canvas id="markCanvas" width="180" height="180" style="width:120px;height:120px"></canvas></div>
+    <div class="btns" id="markBtns"></div>
+  </div>
+
+  <div class="card">
+    <h2>Full lockup (icon + wordmark)</h2>
+    <div class="preview"><canvas id="fullCanvas" style="height:80px"></canvas></div>
+    <div class="btns" id="fullBtns"></div>
+  </div>
+
+  <div class="card">
+    <h2>Brand colors</h2>
+    <div class="swatches">
+      <div class="sw"><span class="chip" style="background:#5B6CFF"></span><div><strong>Brand</strong><br><code>#5B6CFF</code></div></div>
+      <div class="sw"><span class="chip" style="background:#FF8966"></span><div><strong>Accent</strong><br><code>#FF8966</code></div></div>
+      <div class="sw"><span class="chip" style="background:#4ECCA3"></span><div><strong>Mint (alt)</strong><br><code>#4ECCA3</code></div></div>
+      <div class="sw"><span class="chip" style="background:#1A1A1A"></span><div><strong>Ink</strong><br><code>#1A1A1A</code></div></div>
+    </div>
+    <p class="note" style="margin-bottom:0">Overlap color (where the circle meets the square): <code>#5B3A66</code></p>
+  </div>
+</div>
+
+<script>
+const PRIMARY="#5B6CFF", CORAL="#FF8966", OVERLAP="#5B3A66", INK="#1A1A1A";
+const WORDMARK="OutScope Designs";
+
+function roundRect(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+
+// draws the 26x26 mark at the given unit scale, origin (ox,oy)
+function drawMark(ctx, s, ox, oy){
+  ox=ox||0; oy=oy||0;
+  const P=v=>v*s;
+  // circle
+  ctx.fillStyle=PRIMARY; ctx.beginPath(); ctx.arc(ox+P(9),oy+P(9),P(9),0,Math.PI*2); ctx.fill();
+  // square
+  ctx.fillStyle=CORAL; roundRect(ctx,ox+P(10),oy+P(10),P(16),P(16),P(5)); ctx.fill();
+  // baked overlap = square clipped to the circle, in multiply colour
+  ctx.save();
+  ctx.beginPath(); ctx.arc(ox+P(9),oy+P(9),P(9),0,Math.PI*2); ctx.clip();
+  ctx.fillStyle=OVERLAP; roundRect(ctx,ox+P(10),oy+P(10),P(16),P(16),P(5)); ctx.fill();
+  ctx.restore();
+}
+
+function renderMark(size){
+  const c=document.createElement("canvas"); c.width=size; c.height=size;
+  drawMark(c.getContext("2d"), size/26, 0, 0);
+  return c;
+}
+
+// Full lockup: mark + wordmark, height-driven. Returns canvas.
+function renderFull(height){
+  const markS = height*0.55/26;           // mark ~55% of height
+  const markPx = 26*markS;
+  const fontPx = Math.round(height*0.40);
+  const gap = height*0.22;
+  const padX = height*0.12;
+  const measure=document.createElement("canvas").getContext("2d");
+  measure.font = "700 "+fontPx+'px "Clash Display", system-ui, Arial, sans-serif';
+  const textW = measure.measureText(WORDMARK).width;
+  const W = Math.ceil(padX + markPx + gap + textW + padX);
+  const c=document.createElement("canvas"); c.width=W; c.height=height;
+  const ctx=c.getContext("2d");
+  drawMark(ctx, markS, padX, (height-markPx)/2);
+  ctx.fillStyle=INK;
+  ctx.font="700 "+fontPx+'px "Clash Display", system-ui, Arial, sans-serif';
+  ctx.textBaseline="middle";
+  ctx.fillText(WORDMARK, padX+markPx+gap, height*0.54);
+  return c;
+}
+
+function download(canvas, name){
+  canvas.toBlob(b=>{ const a=document.createElement("a");
+    a.href=URL.createObjectURL(b); a.download=name; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000); }, "image/png");
+}
+
+function makeBtns(containerId, sizes, fn, prefix){
+  const box=document.getElementById(containerId);
+  sizes.forEach(sz=>{ const b=document.createElement("button");
+    b.textContent=sz+" px"; b.onclick=()=>download(fn(sz), prefix+"-"+sz+".png"); box.appendChild(b); });
+}
+
+function init(){
+  // previews
+  const mc=document.getElementById("markCanvas"); drawMark(mc.getContext("2d"), mc.width/26,0,0);
+  const fc=document.getElementById("fullCanvas"); const full=renderFull(160);
+  fc.width=full.width; fc.height=full.height; fc.style.width=(full.width/2)+"px";
+  fc.getContext("2d").drawImage(full,0,0);
+  // buttons
+  makeBtns("markBtns",[256,512,1024,2048], renderMark, "outscope-mark");
+  makeBtns("fullBtns",[80,160,320,640], renderFull, "outscope-logo");
+}
+
+// wait for Clash Display so the wordmark bakes in the real font
+if(document.fonts && document.fonts.load){
+  Promise.all([document.fonts.load('700 40px "Clash Display"')])
+    .then(()=>document.fonts.ready).then(init).catch(init);
+} else { window.onload=init; }
+</script>
+</body>
+</html>

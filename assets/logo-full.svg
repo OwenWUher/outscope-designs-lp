@@ -1,0 +1,20 @@
+<svg width="360" height="80" viewBox="0 0 360 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OutScope Designs">
+  <!-- Loads Clash Display when the SVG is opened in a browser; falls back to a
+       geometric sans elsewhere. For tools that can't fetch remote fonts, use the
+       PNG export (assets/export-png.html) which bakes the real typeface. -->
+  <style>
+    @import url("https://api.fontshare.com/v2/css?f[]=clash-display@700&display=swap");
+    .wordmark { font-family: "Clash Display", "Space Grotesk", Arial, sans-serif; font-weight: 700; }
+  </style>
+
+  <!-- mark (scaled from the 26x26 master) -->
+  <g transform="translate(8,18) scale(1.6923)">
+    <circle cx="9" cy="9" r="9" fill="#5B6CFF"/>
+    <rect x="10" y="10" width="16" height="16" rx="5" fill="#FF8966"/>
+    <clipPath id="c"><circle cx="9" cy="9" r="9"/></clipPath>
+    <rect x="10" y="10" width="16" height="16" rx="5" fill="#5B3A66" clip-path="url(#c)"/>
+  </g>
+
+  <!-- wordmark -->
+  <text class="wordmark" x="68" y="51" font-size="32" letter-spacing="-0.5" fill="#1A1A1A">OutScope Designs</text>
+</svg>

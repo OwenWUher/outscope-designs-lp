@@ -1,0 +1,10 @@
+<svg width="256" height="256" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OutScope Designs logo mark">
+  <!-- indigo circle -->
+  <circle cx="9" cy="9" r="9" fill="#5B6CFF"/>
+  <!-- coral rounded square -->
+  <rect x="10" y="10" width="16" height="16" rx="5" fill="#FF8966"/>
+  <!-- baked overlap (multiply of #5B6CFF x #FF8966 = #5B3A66), clipped to the circle,
+       so it renders identically everywhere without relying on mix-blend-mode support -->
+  <clipPath id="circleClip"><circle cx="9" cy="9" r="9"/></clipPath>
+  <rect x="10" y="10" width="16" height="16" rx="5" fill="#5B3A66" clip-path="url(#circleClip)"/>
+</svg>
