@@ -665,12 +665,16 @@ html.force-reveal .reveal { opacity: 1 !important; transform: none !important; }
   .services__grid { grid-template-columns: repeat(2, 1fr); }
   .timeline { grid-template-columns: 1fr; gap: 0; }
   .timeline__line { display: none; }
-  .step { display: grid; grid-template-columns: 56px 1fr; gap: 16px; text-align: left; padding: 18px 0; position: relative; }
-  .step__num { margin: 0; }
-  .step__title, .step__desc { grid-column: 2; }
+  .step { display: grid; grid-template-columns: 56px 1fr; column-gap: 18px; row-gap: 4px;
+    text-align: left; padding: 14px 0 30px; position: relative; align-items: start; }
+  .step__num { margin: 0; grid-row: 1 / span 2; }
+  .step__title { grid-column: 2; grid-row: 1; align-self: center; }
+  .step__desc { grid-column: 2; grid-row: 2; }
+  .step:last-child { padding-bottom: 0; }
+  /* connector line runs from just below each circle down to the next one */
   .step:not(:last-child)::before {
-    content: ""; position: absolute; left: 27px; top: 56px; bottom: -18px; width: 3px;
-    background: linear-gradient(var(--color-primary), var(--color-accent)); opacity: 0.4;
+    content: ""; position: absolute; left: 26px; top: 64px; bottom: 8px; width: 3px;
+    background: linear-gradient(var(--color-primary), var(--color-accent)); opacity: 0.35;
   }
   .pricing__grid { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
   .price-card--featured { transform: scale(1); }
