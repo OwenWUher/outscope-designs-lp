@@ -689,7 +689,7 @@ html.force-reveal .reveal { opacity: 1 !important; transform: none !important; }
   .pricing__grid, .retainer__grid { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
   .price-card--featured { transform: scale(1); }
   .price-card--featured:hover { transform: translateY(-5px); }
-  .about__team { grid-template-columns: 1fr; max-width: 360px; margin-inline: auto 56px; }
+  .about__team { grid-template-columns: 1fr; max-width: 360px; margin-inline: auto; }
 }
 
 @media (max-width: 980px) {
