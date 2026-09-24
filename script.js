@@ -73,6 +73,18 @@ mobileClose.addEventListener("click", closeMenu);
 mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
 
+/* "#contact" links (Get a Quote, Get Started, Contact): scroll to the
+   section without adding #contact to the URL. Smooth scrolling and the
+   nav offset come from scroll-behavior / scroll-padding-top in CSS. */
+document.addEventListener("click", (e) => {
+  const link = e.target.closest('a[href="#contact"]');
+  if (!link) return;
+  const target = document.getElementById("contact");
+  if (!target) return;
+  e.preventDefault();
+  target.scrollIntoView();
+});
+
 /* ============================================================
    3. PORTFOLIO CAROUSEL — build cards from `projects`
    (runs synchronously — never depends on Motion)
