@@ -359,21 +359,72 @@
 
       <div class="container contact__inner">
         <h2 class="contact__title reveal">Ready to Get Your Business Online?</h2>
-        <p class="contact__sub reveal" data-delay="1">Fill out our quick intake form to get started — most builds ship in 3–5 business days.</p>
+        <p class="contact__sub reveal" data-delay="1">Fill out the quick form below to get started — most builds ship in 3–5 business days.</p>
 
         <!--
-          CLIENT INTAKE FORM (link-out)
+          LEAD CAPTURE FORM (Web3Forms)
           ------------------------------------------------------------
-          The intake form is hosted on Notion, which blocks being embedded
-          in an iframe (X-Frame-Options: SAMEORIGIN) even for published
-          notion.site pages, so it opens in a new tab instead. To change
-          the form, update the URL in the href below.
+          Submissions are emailed via Web3Forms. script.js submits with
+          fetch and swaps in the success message; without JS the form
+          still posts natively to Web3Forms.
         -->
-        <div class="intake-cta card reveal" data-delay="2">
-          <div class="intake-cta__icon" aria-hidden="true"></div>
-          <h3 class="intake-cta__title">Start Your Project</h3>
-          <p class="intake-cta__text">Tell us about your business and what you need. It takes about 3 minutes, and we'll follow up within 24 hours.</p>
-          <a href="https://plume-tang-e3d.notion.site/37b751f688fb80619befd6dd5a8aa73a?pvs=105" target="_blank" rel="noopener" class="btn btn--dark btn--lg">Open the Intake Form →</a>
+        <div class="lead-form card reveal" data-delay="2">
+          <form class="lead-form__form" id="lead-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="58802bf7-375d-4611-ac1f-29fb8c8d02e4" />
+            <input type="hidden" name="subject" value="New Lead - Outscope Designs Website" />
+            <input type="checkbox" name="botcheck" class="lead-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="lead-form__grid">
+              <label class="field">
+                <span class="field__label">Full Name</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+              <label class="field">
+                <span class="field__label">Business Name</span>
+                <input type="text" name="business_name" autocomplete="organization" required />
+              </label>
+              <label class="field">
+                <span class="field__label">Email Address</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+              <label class="field">
+                <span class="field__label">Phone Number</span>
+                <input type="tel" name="phone" autocomplete="tel" required />
+              </label>
+              <label class="field">
+                <span class="field__label">Build Package</span>
+                <select name="build_package" required>
+                  <option value="" disabled selected>Select a package</option>
+                  <option>Starter $400</option>
+                  <option>Standard $600</option>
+                  <option>Premium $800</option>
+                  <option>Not Sure</option>
+                </select>
+              </label>
+              <label class="field">
+                <span class="field__label">Monthly Maintenance Plan</span>
+                <select name="maintenance_plan" required>
+                  <option value="" disabled selected>Select a plan</option>
+                  <option>Standard Retainer $89/mo</option>
+                  <option>Premium Retainer $139/mo</option>
+                  <option>No Retainer Needed</option>
+                  <option>Not Sure Yet</option>
+                </select>
+              </label>
+              <label class="field field--full">
+                <span class="field__label">Message <span class="field__optional">(optional)</span></span>
+                <textarea name="message" rows="4" placeholder="Tell us a bit about your business or what you need."></textarea>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn--dark btn--lg lead-form__submit">Send My Info →</button>
+            <p class="lead-form__error" role="alert" hidden>Something went wrong. Please try again or email us directly.</p>
+          </form>
+
+          <div class="lead-form__success" role="status" hidden>
+            <div class="lead-form__check" aria-hidden="true"></div>
+            <p class="lead-form__success-text">Thanks! We'll be in touch within one business day.</p>
+          </div>
         </div>
 
         <!-- ===== PROMINENT "REACH OUT" BAND ===== -->

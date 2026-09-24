@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:onedrive.live.com)",
+      "WebFetch(domain:my.microsoftpersonalcontent.com)",
+      "Bash(find \"/c/Users/owenw/OneDrive\" -iname \"*.docx\" -newermt \"2024-01-01\" 2>/dev/null | grep -iE \"agree|client|contract|intake|onboard\" | head -40)",
+      "Read(//tmp/**)",
+      "Bash(unzip -o \"/c/Users/owenw/OneDrive/Documents/summer-buiz/outscope-designs-client-agreement.docx\" word/document.xml)",
+      "Bash(sed -e 's/<\\\\/w:p>/\\\\n/g' -e 's/<[^>]*>//g' word/document.xml)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -sI \"https://app.notion.com/p/37b751f688fb80619befd6dd5a8aa73a?pvs=106\")",
+      "Bash(curl -sI \"https://plume-tang-e3d.notion.site/37b751f688fb80619befd6dd5a8aa73a?pvs=105\")",
+      "Bash(node -e ' *)",
+      "Bash(cp \"/c/Users/owenw/OneDrive/Documents/outscope-designs-lp/assets/logo-mark.svg\" mark.svg)",
+      "Bash(cp logo-mark-*.png \"/c/Users/owenw/OneDrive/Documents/outscope-designs-lp/assets/\")"
+    ]
+  }
+}

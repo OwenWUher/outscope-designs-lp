@@ -268,11 +268,40 @@ function initMotion({ animate, inView, stagger }) {
   springHover(".price-card--featured", { scale: 1.06, lift: -6, rest: 1.04 });
   springHover(".team-card", { scale: 1.03, lift: -4 });
   springHover(".reachout__card", { scale: 1.03, lift: -5 });
-  springHover(".intake-cta", { scale: 1.01, lift: -3 });
 }
 
 /* ------------------------------------------------------------
-   NOTE: The client intake form is hosted on Notion, which blocks
-   iframe embedding (X-Frame-Options: SAMEORIGIN), so it's a simple
-   link-out button in the contact section — no JS needed here.
+   LEAD FORM — submit to Web3Forms via fetch and show the success
+   message in place (without JS the form posts natively).
    ------------------------------------------------------------ */
+const leadForm = document.getElementById("lead-form");
+if (leadForm) {
+  const submitBtn = leadForm.querySelector(".lead-form__submit");
+  const errorMsg = leadForm.querySelector(".lead-form__error");
+  const success = leadForm.parentElement.querySelector(".lead-form__success");
+  const btnLabel = submitBtn.textContent;
+
+  leadForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorMsg.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    try {
+      const res = await fetch(leadForm.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(leadForm),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.message || "Submission failed");
+
+      leadForm.hidden = true;
+      success.hidden = false;
+    } catch (err) {
+      errorMsg.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+    }
+  });
+}
